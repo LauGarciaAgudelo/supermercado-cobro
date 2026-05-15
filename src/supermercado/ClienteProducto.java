@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class ClienteProducto {
 
-    private String nombre;
-    private List<Producto> productos;
+    private final String nombre;
+    private final List<Producto> productos;
 
     public ClienteProducto(String nombre, List<Producto> productos) {
         this.nombre = nombre;

@@ -1,7 +1,10 @@
 package supermercado;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 /**
- * Clase que representa a una cajera que procesa la compra de un cliente.
+ * Represents a cashier that processes a customer's purchase.
  */
 public class Cajera implements Runnable {
 
@@ -16,7 +19,14 @@ public class Cajera implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("\n" + nombre + " inicia el cobro del cliente: " + cliente.getNombre());
+
+        String horaInicio = LocalTime.now()
+                .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        System.out.println("\n[" + horaInicio + "] "
+                + nombre
+                + " inicia el cobro del cliente: "
+                + cliente.getNombre());
 
         long tiempoInicio = System.currentTimeMillis();
 
@@ -27,23 +37,49 @@ public class Cajera implements Runnable {
         long tiempoFin = System.currentTimeMillis();
         tiempoTotalCobro = tiempoFin - tiempoInicio;
 
-        System.out.println(nombre + " finalizó el cobro de " + cliente.getNombre());
-        System.out.println("Total compra: $" + cliente.calcularTotalCompra());
-        System.out.println("Tiempo total de cobro: " + tiempoTotalCobro / 1000.0 + " segundos");
+        String horaFin = LocalTime.now()
+                .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+        System.out.println("\n[" + horaFin + "] "
+                + nombre
+                + " finalizó el cobro de "
+                + cliente.getNombre());
+
+        System.out.println(nombre
+                + " total compra: $"
+                + cliente.calcularTotalCompra());
+
+        System.out.println(nombre
+                + " tiempo total de cobro: "
+                + tiempoTotalCobro / 1000.0
+                + " segundos");
     }
 
     private void procesarProducto(Producto producto) {
+
         try {
+
+            String horaActual = LocalTime.now()
+                    .format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
             System.out.println(
-                    nombre + " procesando producto: " + producto.getNombre()
-                            + " | Precio: $" + producto.getPrecio()
-                            + " | Tiempo: " + producto.getTiempoProcesamiento() + " segundos"
+                    "[" + horaActual + "] "
+                            + nombre
+                            + " procesando producto: "
+                            + producto.getNombre()
+                            + " | Precio: $"
+                            + producto.getPrecio()
+                            + " | Tiempo: "
+                            + producto.getTiempoProcesamiento()
+                            + " segundos"
             );
 
             Thread.sleep(producto.getTiempoProcesamiento() * 1000L);
 
         } catch (InterruptedException e) {
+
             Thread.currentThread().interrupt();
+
             System.out.println("Error: el proceso de cobro fue interrumpido.");
         }
     }
