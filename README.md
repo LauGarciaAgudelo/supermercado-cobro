@@ -182,15 +182,6 @@ Esto demuestra la ejecución concurrente de múltiples cajeras.
 
 El proyecto se encuentra versionado utilizando Git y almacenado en GitHub.
 
-## Video explicativo
-
-El video muestra:
-
-* Explicación del código
-* Funcionamiento de la concurrencia
-* Ejecución de la simulación
-* Explicación de clases y responsabilidades
-
 ---
 
 # Conclusiones
