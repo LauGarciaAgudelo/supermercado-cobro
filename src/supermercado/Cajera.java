@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a cashier that processes a customer's purchase.
+ * Clase que representa el proceso de compra de un cliente ante una cajeta.
  */
 public class Cajera implements Runnable {
 
